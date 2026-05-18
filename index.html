@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Efeito Hover na Imagem</title>
+  <style>
+    /* Reset básico e centralização na tela */
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #000000;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Container principal do Card */
+    .card-container {
+      position: relative;
+      width: 350px;
+      height: 450px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+    }
+
+    /* Estilo da Imagem */
+    .card-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 15px;
+      z-index: 2; /* Garante que ela comece na frente */
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.6s ease;
+    }
+
+    /* Camada do Texto (Fica fixa no lugar original) */
+    .card-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      /* Ajustei para um gradiente sutil de vermelhos escuros */
+      background: linear-gradient(45deg, #d41e31, #491f8f); 
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      box-sizing: border-box;
+      color: #ffffff;
+      z-index: 1; /* Fica guardado atrás da imagem */
+      
+      /* Estado inicial do texto: invisível */
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    /* Textos dentro do overlay */
+    .card-title {
+      font-size: 1.8rem;
+      margin: 0 0 15px 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 2px solid #be2222;
+      padding-bottom: 5px;
+    }
+
+    .card-text {
+      font-size: 0.95rem;
+      text-align: center;
+      line-height: 1.6;
+      opacity: 0.95;
+      margin: 0;
+    }
+
+    /* ==========================================
+       MÁGICA DO HOVER (Efeito ao passar o mouse)
+       ========================================== */
+
+    /* 1. A imagem pula TOTALMENTE para a direita (100% do seu tamanho + 20px de espaço) */
+    .card-container:hover .card-image {
+      transform: translateX(calc(100% + 20px)); 
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra extra na imagem voadora */
+    }
+
+    /* 2. O texto aparece no retângulo original sem nenhuma interferência */
+    .card-container:hover .card-overlay {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-container">
+    <img src="1.png" alt="Capitã Marvel" class="card-image">
+    
+    <div class="card-overlay">
+      <h3 class="card-title">Capitã Marvel</h3>
+      <p class="card-text">Carol Danvers fundiu seu DNA com genes Kree após um acidente cósmico. Inicialmente Miss Marvel, evoluiu para Binária após perder as memórias para Vampira. Em 2012, assumiu o manto de Capitã Marvel, tornando-se líder cósmica dos Vingadores.</p>
+    </div>
+  </div>
+
+</body>
+</html>
